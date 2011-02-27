@@ -51,8 +51,13 @@ MESSAGE;
 			// and finally hit the service
 			require_once('awstools/aws.php');
 			
-			$sns = new SimpleNotification( $iam_key, $iam_secret );
-			$sns->publish( $topic_arn, $message, $subject );
+			try {
+				$sns = new SimpleNotification( $iam_key, $iam_secret );
+				$sns->publish( $topic_arn, $message, $subject );
+			}
+			catch ( Exception $e ) {
+				EventLog::log( _t( 'Unable to notify SNS of new comment.' ), 'err', 'default', null, array( $e->getMessage() ) );
+			}
 			
 		}
 		
