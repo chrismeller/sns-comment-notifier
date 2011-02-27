@@ -1,0 +1,3 @@
+[submodule "awstools"]
+	path = awstools
+	url = ssh://git@chrismeller.repositoryhosting.com/chrismeller/awstools.git
