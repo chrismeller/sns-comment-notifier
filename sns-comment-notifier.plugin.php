@@ -38,15 +38,19 @@ The following comment was added to the post "%1\$s".
 
 Author: %3\$s <%4\$s>
 URL: %5\$s
+IP: %6\$s ( %7\$s )
 
-%6\$s
+%8\$s
 
 -----
 Moderate comments: %7\$s
 MESSAGE;
 			
+			$ip = long2ip( $comment->ip );
+			$hostname = gethostbyaddr( $ip );
+			
 			// translate and substitute in the values
-			$message = _t( $message, array( $post->title, $post->permalink, $comment->name, $comment->email, $comment->url, $comment->content, URL::get( 'admin', 'page=comments' ) ), 'sns-comment-notifier' );
+			$message = _t( $message, array( $post->title, $post->permalink, $comment->name, $comment->email, $comment->url, $ip, $hostname, $comment->content, URL::get( 'admin', 'page=comments' ) ), 'sns-comment-notifier' );
 			
 			// and finally hit the service
 			require_once('awstools/aws.php');
