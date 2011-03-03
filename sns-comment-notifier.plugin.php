@@ -43,7 +43,7 @@ IP: %6\$s ( %7\$s )
 %8\$s
 
 -----
-Moderate comments: %7\$s
+Moderate comments: %9\$s
 MESSAGE;
 			
 			$ip = long2ip( $comment->ip );
