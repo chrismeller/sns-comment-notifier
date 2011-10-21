@@ -46,11 +46,10 @@ IP: %6\$s ( %7\$s )
 Moderate comments: %9\$s
 MESSAGE;
 			
-			$ip = long2ip( $comment->ip );
-			$hostname = gethostbyaddr( $ip );
+			$hostname = gethostbyaddr( $comment->ip );
 			
 			// translate and substitute in the values
-			$message = _t( $message, array( $post->title, $post->permalink, $comment->name, $comment->email, $comment->url, $ip, $hostname, $comment->content, URL::get( 'admin', 'page=comments' ) ), 'sns-comment-notifier' );
+			$message = _t( $message, array( $post->title, $post->permalink, $comment->name, $comment->email, $comment->url, $comment->ip, $hostname, $comment->content, URL::get( 'admin', 'page=comments' ) ), 'sns-comment-notifier' );
 			
 			// and finally hit the service
 			require_once('awstools/aws.php');
